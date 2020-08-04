@@ -10,6 +10,10 @@ repositories {
     mavenCentral()
 }
 
+test {
+    useJUnitPlatform()
+}
+
 sourceSets {
     integrationTest {
         groovy.srcDir "$projectDir/src/integration-test/groovy"
@@ -33,10 +37,17 @@ check.dependsOn integrationTest
 
 ext {
     jGivenVersion = '0.18.2'
+    junitVersion = '5.3.1'
 }
 
 dependencies {
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation 'io.vavr:vavr:0.10.3'
+
+    testImplementation 'org.assertj:assertj-core:3.16.1'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
+
     integrationTestImplementation "org.codehaus.groovy:groovy-all:2.5.12"
     integrationTestImplementation "com.tngtech.jgiven:jgiven-core:$jGivenVersion"
     integrationTestImplementation "com.tngtech.jgiven:jgiven-html5-report:$jGivenVersion"

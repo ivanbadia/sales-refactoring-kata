@@ -3,7 +3,7 @@ package com.supermarket.sales.acceptance.stages
 import com.tngtech.jgiven.Stage
 import com.tngtech.jgiven.annotation.ExpectedScenarioState
 import com.tngtech.jgiven.annotation.ProvidedScenarioState
-import salestax.SalesProgram
+import com.supermarket.SalesProgram
 
 import static java.nio.charset.StandardCharsets.UTF_8
 

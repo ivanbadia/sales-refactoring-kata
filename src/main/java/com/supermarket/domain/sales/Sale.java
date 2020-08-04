@@ -1,4 +1,4 @@
-package salestax;
+package com.supermarket.domain.sales;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -15,11 +15,8 @@ public class Sale
     /// </summary>
     /// <param name="inputLine">The line to add.</param>
     /// <returns>True for success, False for failure.  Failures are usually caused via incorrect formatting of the input</returns>
-    public boolean add(String inputLine)
+    public boolean add(SaleLine saleLine)
     {
-        SaleLine saleLine;
-
-        saleLine = InputParser.ProcessInput(inputLine);
         saleLines.add(saleLine);
         totalTax += saleLine.getTaxAmount();
         totalValue += saleLine.getLineValue();

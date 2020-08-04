@@ -1,4 +1,4 @@
-package salestax;
+package com.supermarket.domain.sales;
 
 import java.text.DecimalFormat;
 
