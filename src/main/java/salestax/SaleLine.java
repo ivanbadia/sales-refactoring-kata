@@ -63,7 +63,7 @@ public class SaleLine
 
         // calculate taxable amount
         // ideally should really have a product list and tax rules, but this'll have to do for the exercise.
-        if (productName.contains("book") || productName.contains("tablet") || productName.contains("chip"))
+        if (productName.contains("book") || productName.contains("tablet") || productName.contains("chip") || productName.contains("chocolate"))
             taxRate = 0;  //No base tax applicable for books, medicals items or food
         else
             taxRate = 10; //10% base tax or general products

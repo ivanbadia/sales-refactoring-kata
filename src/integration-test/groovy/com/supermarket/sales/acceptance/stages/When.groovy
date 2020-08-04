@@ -5,8 +5,6 @@ import com.tngtech.jgiven.annotation.ExpectedScenarioState
 import com.tngtech.jgiven.annotation.ProvidedScenarioState
 import salestax.SalesProgram
 
-import java.nio.charset.StandardCharsets
-
 import static java.nio.charset.StandardCharsets.UTF_8
 
 class When extends Stage<When> {

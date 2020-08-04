@@ -10,7 +10,8 @@ class Then extends Stage<Then> {
     void the_receipt_is(List<String> receiptLines) {
         String receipt = ""
         receiptLines.forEach({ line -> receipt += line + "\n" })
-        assert output.toString().contains(receipt)
+        def s = output.toString()
+        assert s.contains(receipt)
         self()
     }
 }
