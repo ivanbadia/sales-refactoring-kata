@@ -27,7 +27,7 @@ Result:
 Test 2:
 -------
 1 imported box of chips at 10.00
-1 imported transfomer at 47.50
+1 imported transformer at 47.50
 
 Result:
 	1 imported box of chips: 10.50

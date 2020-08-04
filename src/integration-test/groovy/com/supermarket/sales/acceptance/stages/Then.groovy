@@ -5,7 +5,7 @@ import com.tngtech.jgiven.annotation.ExpectedScenarioState
 
 class Then extends Stage<Then> {
     @ExpectedScenarioState
-    private ByteArrayOutputStream output = new ByteArrayOutputStream()
+    private ByteArrayOutputStream output
 
     void the_receipt_is(List<String> receiptLines) {
         String receipt = ""

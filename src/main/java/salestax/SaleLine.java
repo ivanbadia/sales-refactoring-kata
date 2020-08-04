@@ -68,7 +68,7 @@ public class SaleLine
         else
             taxRate = 10; //10% base tax or general products
         if (isImported)
-            taxRate = 5; //5% regardless for any imported items
+            taxRate += 5; //5% regardless for any imported items
 
         taxAmount = CalculateTax(lineValue,taxRate);
         //Add tax to line value
@@ -102,6 +102,6 @@ public class SaleLine
     /// <returns>The string representation of the sale line</returns>
     @Override
     public String toString() {
-        return String.format("%o %s: %s", getQuantity(), getProductName(), new DecimalFormat("#,###.##").format(getLineValue()));
+        return String.format("%o %s: %s", getQuantity(), getProductName(), new DecimalFormat("#,##0.00").format(getLineValue()));
     }
 }

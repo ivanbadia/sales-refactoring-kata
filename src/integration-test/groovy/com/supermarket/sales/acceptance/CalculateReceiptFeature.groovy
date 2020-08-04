@@ -14,8 +14,8 @@ class CalculateReceiptFeature extends ScenarioSpec<Given, When, Then> {
         then().the_receipt_is(receipt)
 
         where:
-        saleItems                                                               | receipt
-        ["1 book at 12.49", "1 music CD at 14.99", "1 packet of chips at 0.85"] | ["1 book: 12.49","1 music CD: 16.49", "1 packet of chips: 0.85", "Sales Taxes: 1.50", "Total: 29.83"]
+        saleItems                                                                                                                                                                 | receipt
+        ["1 book at 12.49", "1 music CD at 14.99", "1 packet of chips at 0.85"]                                                                                                   | ["1 book: 12.49", "1 music CD: 16.49", "1 packet of chips: 0.85", "Sales Taxes: 1.50", "Total: 29.83"]
+        ["1 imported box of chips at 10.00", "1 imported transformer at 47.50"]                                                                                                   | ["1 imported box of chips: 10.50", "1 imported transformer: 54.65", "Sales Taxes: 7.65", "Total: 65.15"]
     }
 }
-
