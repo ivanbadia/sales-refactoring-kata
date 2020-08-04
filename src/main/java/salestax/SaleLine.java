@@ -102,6 +102,6 @@ public class SaleLine
     /// <returns>The string representation of the sale line</returns>
     @Override
     public String toString() {
-        return String.format("%o %s: %s", getQuantity(), getProductName(), new DecimalFormat("#,##0.00").format(getLineValue()));
+        return String.format("%d %s: %s", getQuantity(), getProductName(), new DecimalFormat("#,##0.00").format(getLineValue()));
     }
 }
