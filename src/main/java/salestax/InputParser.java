@@ -1,8 +1,7 @@
 package salestax;
 
 // THIS IS NOT THREAD SAFE (or localised)
-public class InputParser
-{
+public class InputParser {
 
     // Assumes that all input is in the format:
     //  <qty> <product> at <price>
@@ -11,8 +10,7 @@ public class InputParser
     //
     // If it can't be parsed we return null.
     // If it can then we return a sales line, complete with tax information calculated.
-    public static SaleLine ProcessInput(String input)
-    {
+    public static SaleLine ProcessInput(String input) {
         int quantity;
         String productName;
         double price;
@@ -25,7 +23,7 @@ public class InputParser
         int wordCount = words.length;
 
         // must have at least 4 words
-        if (wordCount > 4)
+        if (wordCount < 4)
             return null;
 
         // get quantity (first word)
@@ -37,25 +35,24 @@ public class InputParser
 
 
         // get price (last word in input string)
-        try
-        {
+        try {
             price = Double.parseDouble(words[wordCount - 1]);
         } catch (NumberFormatException e) {
             return null;
         }
 
         productName = "";
-        for(int i=1; i<wordCount; i++) {
+        for (int i = 1; i < wordCount - 2; i++) {
             productName = String.join(" ", productName, words[i]);
         }
+        productName = productName.trim();
 
         if (productName == null || productName.isEmpty())
             return null;
 
         //Check if this is an imported product
         isImported = productName.contains("imported ");
-        if (isImported)
-        {
+        if (isImported) {
             //Ensure the word imported appears at the front of the description
             productName = "imported " + productName.replace("imported ", "");
         }

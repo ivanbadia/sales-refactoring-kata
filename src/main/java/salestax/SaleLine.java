@@ -87,7 +87,7 @@ public class SaleLine
         double amount;
         double remainder;
 
-        amount = (double)Math.round((value * taxRate)/100);
+        amount = (value * taxRate)/100;
 
         //Now round up to nearest 5 cents.
         remainder = amount % .05;
