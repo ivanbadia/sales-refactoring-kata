@@ -1,0 +1,16 @@
+package com.supermarket.sales.acceptance.stages
+
+import com.tngtech.jgiven.Stage
+import com.tngtech.jgiven.annotation.ExpectedScenarioState
+
+class Then extends Stage<Then> {
+    @ExpectedScenarioState
+    private ByteArrayOutputStream output = new ByteArrayOutputStream()
+
+    void the_receipt_is(List<String> receiptLines) {
+        String receipt = ""
+        receiptLines.forEach({ line -> receipt += "\t" + line + "\n" })
+        assert output.toString().endsWith(receipt)
+        self()
+    }
+}

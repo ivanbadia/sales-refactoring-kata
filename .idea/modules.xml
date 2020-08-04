@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SalesTax.iml" filepath="$PROJECT_DIR$/.idea/modules/SalesTax.iml" group="SalesTax" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SalesTax_integrationTest.iml" filepath="$PROJECT_DIR$/.idea/modules/SalesTax_integrationTest.iml" group="SalesTax" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SalesTax_main.iml" filepath="$PROJECT_DIR$/.idea/modules/SalesTax_main.iml" group="SalesTax" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SalesTax_test.iml" filepath="$PROJECT_DIR$/.idea/modules/SalesTax_test.iml" group="SalesTax" />
     </modules>

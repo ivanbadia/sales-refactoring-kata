@@ -1,10 +1,12 @@
-import salestax.Sale;
+package salestax;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class SalesProgram {
+
+    public static final BufferedReader BUFFERED_READER = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) {
         Sale sale;
@@ -37,9 +39,8 @@ public class Main {
     }
 
     static String readLine() {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try {
-            return br.readLine();
+            return BUFFERED_READER.readLine();
         } catch (IOException e) {
             return "";
         }

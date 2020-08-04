@@ -1,11 +1,12 @@
 package salestax;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sale
 {
-    private List<SaleLine> saleLines;
+    private List<SaleLine> saleLines = new ArrayList<>();
     private double totalTax;
     private double totalValue;
 

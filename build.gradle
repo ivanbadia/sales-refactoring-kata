@@ -2,6 +2,7 @@ group 'SalesTax'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'groovy'
 
 sourceCompatibility = 1.8
 
@@ -9,6 +10,45 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    integrationTest {
+        groovy.srcDir "$projectDir/src/integration-test/groovy"
+        resources.srcDir "$projectDir/src/integration-test/resources"
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+    }
+}
+
+configurations {
+    integrationTestImplementation.extendsFrom testImplementation
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+task integrationTest(type: Test) {
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
+check.dependsOn integrationTest
+
+ext {
+    jGivenVersion = '0.18.2'
+}
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    integrationTestImplementation "org.codehaus.groovy:groovy-all:2.5.12"
+    integrationTestImplementation "com.tngtech.jgiven:jgiven-core:$jGivenVersion"
+    integrationTestImplementation "com.tngtech.jgiven:jgiven-html5-report:$jGivenVersion"
+    integrationTestImplementation "com.tngtech.jgiven:jgiven-spock:$jGivenVersion"
+}
+
+compileGroovy {
+    dependsOn tasks.getByPath('compileJava')
+    classpath += files(compileJava.destinationDir)
+}
+
+compileTestGroovy {
+    dependsOn tasks.getByPath('compileTestJava')
+    classpath += files(compileTestJava.destinationDir)
 }
