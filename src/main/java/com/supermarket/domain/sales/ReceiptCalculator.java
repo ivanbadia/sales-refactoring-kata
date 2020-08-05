@@ -2,7 +2,6 @@ package com.supermarket.domain.sales;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ReceiptCalculator {
     public Receipt receiptFor(List<SaleLine> saleLines) {
@@ -31,13 +30,12 @@ public class ReceiptCalculator {
 
 
     public static double CalculateTax(double value, int taxRate) {
-        double amount;
-        double remainder;
+        double amount = (value * taxRate) / 100;
+        return roundUpToNearestFiveCents(amount);
+    }
 
-        amount = (value * taxRate) / 100;
-
-        //Now round up to nearest 5 cents.
-        remainder = amount % .05;
+    private static double roundUpToNearestFiveCents(double amount) {
+        double remainder = amount % .05;
         if (remainder > 0)
             amount += .05 - remainder;
         return amount;
