@@ -1,4 +1,4 @@
-package com.supermarket.infrastructure.input;
+package com.supermarket.infrastructure.view;
 
 import java.io.BufferedReader;
 import java.io.IOException;

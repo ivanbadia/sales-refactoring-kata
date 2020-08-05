@@ -1,15 +1,13 @@
-package com.supermarket.infrastructure.input;
+package com.supermarket.infrastructure.view;
 
-import com.supermarket.domain.sales.SaleLineNotValid;
-import com.supermarket.domain.sales.SaleLinesReader;
+import com.supermarket.domain.sales.ErrorReadingSaleLinesException;
+import com.supermarket.domain.sales.SaleLines;
 import com.supermarket.domain.sales.SaleLine;
-import io.vavr.control.Either;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class ConsoleSaleLinesReader implements SaleLinesReader {
+public class ConsoleSaleLinesReader implements SaleLines {
     private final Console console;
     private final SaleLineParser saleLineParser;
 
@@ -19,13 +17,13 @@ public class ConsoleSaleLinesReader implements SaleLinesReader {
     }
 
     @Override
-    public List<SaleLine> read() {
+    public List<SaleLine> all() {
         console.printLine("Enter sales in the format <qty> <description> at <unit price>\nFor example: 2 books at 13.25\nEntering a blank line completes the sale\n");
         List<SaleLine> saleLines = new ArrayList<>();
         String line = getInput();
         while (isNotEmpty(line)) {
             saleLineParser.parse(line)
-                    .ifPresentOrElse(saleLines::add, () -> { throw new SaleLineNotValid(); });
+                    .ifPresentOrElse(saleLines::add, () -> { throw new ErrorReadingSaleLinesException(); });
             line = getInput();
         }
         return saleLines;

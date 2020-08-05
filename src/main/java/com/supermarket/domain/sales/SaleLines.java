@@ -2,6 +2,6 @@ package com.supermarket.domain.sales;
 
 import java.util.List;
 
-public interface SaleLinesReader {
-    List<SaleLine> read();
+public interface SaleLines {
+    List<SaleLine> all();
 }

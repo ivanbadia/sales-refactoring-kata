@@ -38,15 +38,16 @@ check.dependsOn integrationTest
 ext {
     jGivenVersion = '0.18.2'
     junitVersion = '5.3.1'
+    mockitoVersion = '2.28.2'
 }
 
 dependencies {
-    implementation 'io.vavr:vavr:0.10.3'
-
-    testImplementation 'org.assertj:assertj-core:3.16.1'
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito:mockito-junit-jupiter:$mockitoVersion"
+    testImplementation 'org.assertj:assertj-core:3.16.1'
 
     integrationTestImplementation "org.codehaus.groovy:groovy-all:2.5.12"
     integrationTestImplementation "com.tngtech.jgiven:jgiven-core:$jGivenVersion"

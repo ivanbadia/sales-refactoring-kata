@@ -1,9 +1,8 @@
 package com.supermarket.domain.sales;
 
-import com.supermarket.infrastructure.input.Console;
-import com.supermarket.infrastructure.input.ConsoleSaleLinesReader;
-import com.supermarket.infrastructure.input.SaleLineParser;
-import org.assertj.core.api.Assertions;
+import com.supermarket.infrastructure.view.Console;
+import com.supermarket.infrastructure.view.ConsoleSaleLinesReader;
+import com.supermarket.infrastructure.view.SaleLineParser;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +35,7 @@ class ConsoleSaleLinesReaderShould {
     void read_sale_items() {
         writeInput("1 book at 12.49\n1 music CD at 14.99\n2 box of chips at 10.00\n\n");
 
-        List<SaleLine> saleLines = saleLineReader().read();
+        List<SaleLine> saleLines = saleLineReader().all();
 
         assertThat(saleLines)
                 .usingRecursiveFieldByFieldElementComparator()
@@ -51,16 +50,16 @@ class ConsoleSaleLinesReaderShould {
     void inform_sale_line_is_not_valid(String input) {
         writeInput(input + "\n\n");
 
-        Throwable exception = catchThrowable( () -> saleLineReader().read());
+        Throwable exception = catchThrowable( () -> saleLineReader().all());
 
-        assertThat(exception).isInstanceOf(SaleLineNotValid.class);
+        assertThat(exception).isInstanceOf(ErrorReadingSaleLinesException.class);
     }
 
     @Test
     void read_imported_sale_items() {
         writeInput("1 box of imported chocolates at 11.25\n\n");
 
-        List<SaleLine> saleLines = saleLineReader().read();
+        List<SaleLine> saleLines = saleLineReader().all();
 
         assertThat(saleLines)
                 .usingRecursiveFieldByFieldElementComparator()

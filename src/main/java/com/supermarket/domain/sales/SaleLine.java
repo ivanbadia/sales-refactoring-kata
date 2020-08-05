@@ -36,12 +36,6 @@ public class SaleLine
     }
 
 
-    /// <summary>
-    /// Default constructor is not publicly accesible
-    /// </summary>
-    private SaleLine()
-    {
-    }
 
     /// <summary>
     /// Public constructor for the sale line
