@@ -1,7 +1,7 @@
 package com.supermarket.infrastructure.view;
 
-import com.supermarket.domain.sales.Receipt;
-import com.supermarket.domain.sales.ReceiptLine;
+import com.supermarket.domain.receipt.Receipt;
+import com.supermarket.domain.receipt.ReceiptLine;
 
 import java.text.DecimalFormat;
 

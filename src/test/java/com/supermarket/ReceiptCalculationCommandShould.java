@@ -1,5 +1,7 @@
 package com.supermarket;
 
+import com.supermarket.domain.receipt.Receipt;
+import com.supermarket.domain.receipt.ReceiptCalculator;
 import com.supermarket.domain.sales.*;
 import com.supermarket.infrastructure.view.Output;
 import org.junit.jupiter.api.Test;

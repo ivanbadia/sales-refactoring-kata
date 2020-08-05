@@ -1,4 +1,6 @@
-package com.supermarket.domain.sales;
+package com.supermarket.domain.receipt;
+
+import com.supermarket.domain.sales.SaleLine;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.supermarket.domain.sales;
+package com.supermarket.domain.receipt;
 
 public class ReceiptLine
 {

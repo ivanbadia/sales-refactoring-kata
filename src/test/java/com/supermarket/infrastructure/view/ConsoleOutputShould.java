@@ -1,7 +1,7 @@
 package com.supermarket.infrastructure.view;
 
-import com.supermarket.domain.sales.Receipt;
-import com.supermarket.domain.sales.ReceiptLine;
+import com.supermarket.domain.receipt.Receipt;
+import com.supermarket.domain.receipt.ReceiptLine;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

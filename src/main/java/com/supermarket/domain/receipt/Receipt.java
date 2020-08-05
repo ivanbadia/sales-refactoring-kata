@@ -1,10 +1,10 @@
-package com.supermarket.domain.sales;
+package com.supermarket.domain.receipt;
 
 import java.util.List;
 
 public class Receipt {
-    private double taxes;
-    private List<ReceiptLine> lines;
+    private final double taxes;
+    private final List<ReceiptLine> lines;
 
     public Receipt(double taxes, List<ReceiptLine> lines) {
         this.taxes = taxes;

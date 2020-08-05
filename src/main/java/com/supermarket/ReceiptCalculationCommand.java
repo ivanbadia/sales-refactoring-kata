@@ -1,5 +1,7 @@
 package com.supermarket;
 
+import com.supermarket.domain.receipt.Receipt;
+import com.supermarket.domain.receipt.ReceiptCalculator;
 import com.supermarket.domain.sales.*;
 import com.supermarket.infrastructure.view.Output;
 
@@ -8,7 +10,7 @@ public class ReceiptCalculationCommand {
     private final ReceiptCalculator receiptCalculator;
     private final Output output;
 
-    public ReceiptCalculationCommand(SaleLines saleLines, com.supermarket.domain.sales.ReceiptCalculator receiptCalculator, Output output) {
+    public ReceiptCalculationCommand(SaleLines saleLines, ReceiptCalculator receiptCalculator, Output output) {
         this.saleLines = saleLines;
         this.receiptCalculator = receiptCalculator;
         this.output = output;
