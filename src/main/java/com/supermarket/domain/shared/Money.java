@@ -1,7 +1,6 @@
 package com.supermarket.domain.shared;
 
 public class Money {
-    public static final Money ZERO = new Money(0);
     private final double value;
 
     public Money(double value) {

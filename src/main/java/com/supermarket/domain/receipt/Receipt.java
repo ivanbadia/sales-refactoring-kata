@@ -24,6 +24,6 @@ public class Receipt {
     public Money getTotal() {
         return lines.stream()
                 .map(ReceiptLine::getTotalAmount)
-                .reduce(Money.ZERO, Money::sum);
+                .reduce(new Money(0), Money::sum);
     }
 }
