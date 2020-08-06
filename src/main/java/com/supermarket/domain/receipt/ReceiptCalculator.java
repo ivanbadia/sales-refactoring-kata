@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReceiptCalculator {
-    public static final int DEFAULT_TAX_RATE = 10;
     private TaxRateProvider taxRateProvider;
 
     public ReceiptCalculator(TaxRateProvider taxRateProvider) {
@@ -19,9 +18,9 @@ public class ReceiptCalculator {
         List<ReceiptLine> lines = new ArrayList<>();
         for (SaleLine saleLine : saleLines) {
             int taxRate = taxRateProvider.taxRateFor(saleLine);
-            double lineTax = CalculateTax(saleLine.getTotalAmount(), taxRate);
-            lines.add(new ReceiptLine(saleLine.getQuantity(), saleLine.getProductName(), saleLine.getTotalAmount() + lineTax, saleLine.isImported()));
-            totalTaxAmount += lineTax;
+            double saleLineTax = CalculateTax(saleLine.getTotalAmount(), taxRate);
+            lines.add(new ReceiptLine(saleLine.getQuantity(), saleLine.getProductName(), saleLine.getTotalAmount() + saleLineTax, saleLine.isImported()));
+            totalTaxAmount += saleLineTax;
         }
 
         return new Receipt(totalTaxAmount, lines);

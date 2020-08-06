@@ -1,8 +1,8 @@
-package com.supermarket.sales.acceptance
+package com.supermarket.acceptance
 
-import com.supermarket.sales.acceptance.stages.Given
-import com.supermarket.sales.acceptance.stages.Then
-import com.supermarket.sales.acceptance.stages.When
+import com.supermarket.acceptance.stages.Given
+import com.supermarket.acceptance.stages.Then
+import com.supermarket.acceptance.stages.When
 import com.tngtech.jgiven.spock.ScenarioSpec
 
 class CalculateReceiptFeature extends ScenarioSpec<Given, When, Then> {

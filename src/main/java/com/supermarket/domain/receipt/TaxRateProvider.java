@@ -12,6 +12,7 @@ public class TaxRateProvider {
     private static final int NO_BASE_TAX = 0;
     private static final int BASE_TAX = 10;
     private static final int EXTRA_TAX_FOR_IMPORTED_PRODUCTS = 5;
+
     private final Products products;
 
     public TaxRateProvider(Products products) {
