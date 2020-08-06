@@ -3,6 +3,7 @@ package com.supermarket;
 import com.supermarket.domain.receipt.Receipt;
 import com.supermarket.domain.receipt.ReceiptCalculator;
 import com.supermarket.domain.sales.*;
+import com.supermarket.domain.shared.Money;
 import com.supermarket.infrastructure.view.Output;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +19,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 class ReceiptCalculationCommandShould {
     private static final List<SaleItem> SALE_LINES = List.of(aSaleItem().build());
-    private static final Receipt RECEIPT = new Receipt(0, List.of());
+    private static final Receipt RECEIPT = new Receipt(new Money(0), List.of());
 
     @Mock
     private SaleItems saleItems;

@@ -22,7 +22,7 @@ class ConsoleOutputShould {
     @Test
     void display_receipt() {
         Receipt receipt = new Receipt(
-                5.70,
+                new Money(5.70),
                 List.of(
                         new ReceiptLine(1, new ProductName("box of chips"), new Money(12.3), false),
                 new ReceiptLine(2, new ProductName("music CD"), new Money(44.60), true))

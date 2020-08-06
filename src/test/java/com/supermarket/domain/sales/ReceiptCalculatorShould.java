@@ -46,7 +46,7 @@ class ReceiptCalculatorShould {
         Receipt receipt = receiptCalculator.receiptFor(saleItems);
 
         Receipt expectedReceipt = new Receipt(
-                7.0,
+                new Money(7.0),
                 List.of(
                         new ReceiptLine(1, MUSIC_CD, new Money(13.74), false),
                         new ReceiptLine(2, BOTTLE_OF_PERFUME, new Money(43.85), true)

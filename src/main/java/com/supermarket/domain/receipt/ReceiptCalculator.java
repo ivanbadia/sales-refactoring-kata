@@ -24,7 +24,7 @@ public class ReceiptCalculator {
             totalTaxAmount += saleItemTax;
         }
 
-        return new Receipt(totalTaxAmount, lines);
+        return new Receipt(new Money(totalTaxAmount), lines);
     }
 
 

@@ -5,10 +5,10 @@ import com.supermarket.domain.shared.Money;
 import java.util.List;
 
 public class Receipt {
-    private final double taxes;
+    private final Money taxes;
     private final List<ReceiptLine> lines;
 
-    public Receipt(double taxes, List<ReceiptLine> lines) {
+    public Receipt(Money taxes, List<ReceiptLine> lines) {
         this.taxes = taxes;
         this.lines = lines;
     }
@@ -17,7 +17,7 @@ public class Receipt {
         return this.lines;
     }
 
-    public double getTaxes() {
+    public Money getTaxes() {
         return taxes;
     }
 
