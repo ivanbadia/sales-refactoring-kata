@@ -24,6 +24,7 @@ import static org.mockito.BDDMockito.given;
 @ExtendWith(MockitoExtension.class)
 class TaxRateProviderShould {
     private static final int BASE_TAX = 10;
+    private static final ProductName PRODUCT = new ProductName("product");
 
     @Mock
     private Products products;
@@ -39,9 +40,9 @@ class TaxRateProviderShould {
     @CsvSource(value = {"BOOK", "MEDICAL_ITEM", "FOOD"})
     void return_no_base_tax_for_products_exempt_of_taxes(ProductType type) {
         given(products.by(new ProductName("product")))
-                .willReturn(Optional.of(new Product(new ProductName("product"), type)));
+                .willReturn(Optional.of(new Product(PRODUCT, type)));
 
-        int taxRate = taxRateProvider.taxRateFor(new SaleLine(1, "product", 12.3, false));
+        int taxRate = taxRateProvider.taxRateFor(new SaleLine(1, PRODUCT, 12.3, false));
 
         assertThat(taxRate)
                 .isEqualTo(0);
@@ -52,7 +53,7 @@ class TaxRateProviderShould {
         given(products.by(new ProductName("product")))
                 .willReturn(Optional.of(new Product(new ProductName("product"), GENERAL)));
 
-        int taxRate = taxRateProvider.taxRateFor(new SaleLine(1, "product", 12.3, false));
+        int taxRate = taxRateProvider.taxRateFor(new SaleLine(1, PRODUCT, 12.3, false));
 
         assertThat(taxRate)
                 .isEqualTo(BASE_TAX);
@@ -63,7 +64,7 @@ class TaxRateProviderShould {
         given(products.by(new ProductName("product")))
                 .willReturn(Optional.of(new Product(new ProductName("product"), GENERAL)));
 
-        int taxRate = taxRateProvider.taxRateFor(new SaleLine(1, "product", 12.3, true));
+        int taxRate = taxRateProvider.taxRateFor(new SaleLine(1, PRODUCT, 12.3, true));
 
         assertThat(taxRate)
                 .isEqualTo(15);
@@ -75,7 +76,7 @@ class TaxRateProviderShould {
         given(products.by(new ProductName("product")))
                 .willReturn(Optional.empty());
 
-        int taxRate = taxRateProvider.taxRateFor(new SaleLine(1, "product", 12.3, false));
+        int taxRate = taxRateProvider.taxRateFor(new SaleLine(1, PRODUCT, 12.3, false));
 
         assertThat(taxRate)
                 .isEqualTo(BASE_TAX);

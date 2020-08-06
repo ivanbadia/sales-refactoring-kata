@@ -8,12 +8,9 @@ public class SaleLine {
     private boolean isImported;
     private int quantity;
 
-    public SaleLine(int lineQuantity, String name, double unitPrice, boolean itemIsImported) {
-        //TODO A STRING
-        if (name == null || name.isEmpty()) name = "";
-
+    public SaleLine(int lineQuantity, ProductName name, double unitPrice, boolean itemIsImported) {
         quantity = lineQuantity;
-        productName = new ProductName(name);
+        productName = name;
         price = unitPrice;
         isImported = itemIsImported;
     }

@@ -35,8 +35,8 @@ class ReceiptCalculatorShould {
     @Test
     void calculate_receipt() {
         List<SaleLine> saleLines = List.of(
-                new SaleLine(1, "music CD", 12.49, false),
-                new SaleLine(2, "bottle of perfume", 19.05, false)
+                new SaleLine(1, MUSIC_CD, 12.49, false),
+                new SaleLine(2, BOTTLE_OF_PERFUME, 19.05, false)
         );
         given(taxRateProvider.taxRateFor(saleLines.get(0))).willReturn(10);
         given(taxRateProvider.taxRateFor(saleLines.get(1))).willReturn(15);

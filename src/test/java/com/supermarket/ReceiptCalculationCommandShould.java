@@ -1,5 +1,6 @@
 package com.supermarket;
 
+import com.supermarket.domain.product.ProductName;
 import com.supermarket.domain.receipt.Receipt;
 import com.supermarket.domain.receipt.ReceiptCalculator;
 import com.supermarket.domain.sales.*;
@@ -16,7 +17,7 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class ReceiptCalculationCommandShould {
-    private static final List<SaleLine> SALE_LINES = List.of(new SaleLine(1, "book", 12.49, false));
+    private static final List<SaleLine> SALE_LINES = List.of(new SaleLine(1, new ProductName("book"), 12.49, false));
     private static final Receipt RECEIPT = new Receipt(0, List.of());
 
     @Mock

@@ -1,5 +1,6 @@
 package com.supermarket.infrastructure.view;
 
+import com.supermarket.domain.product.ProductName;
 import com.supermarket.domain.sales.SaleLine;
 
 import java.util.Optional;
@@ -31,7 +32,7 @@ public class SaleLineParser {
                 productName = moveImportedWordToTheFront(productName);
             }
 
-            return Optional.of(new SaleLine(quantity, productName, price, isImported));
+            return Optional.of(new SaleLine(quantity, new ProductName(productName), price, isImported));
 
         } catch (NumberFormatException e) {
             return Optional.empty();

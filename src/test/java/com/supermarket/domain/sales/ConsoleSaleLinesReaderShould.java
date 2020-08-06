@@ -1,5 +1,6 @@
 package com.supermarket.domain.sales;
 
+import com.supermarket.domain.product.ProductName;
 import com.supermarket.infrastructure.view.Console;
 import com.supermarket.infrastructure.view.ConsoleSaleLinesReader;
 import com.supermarket.infrastructure.view.SaleLineParser;
@@ -40,9 +41,9 @@ class ConsoleSaleLinesReaderShould {
         assertThat(saleLines)
                 .usingRecursiveFieldByFieldElementComparator()
                 .containsExactly(
-                        new SaleLine(1, "book", 12.49, false),
-                        new SaleLine(1, "music CD", 14.99, false),
-                        new SaleLine(2, "box of chips", 10.00, false));
+                        new SaleLine(1, new ProductName("book"), 12.49, false),
+                        new SaleLine(1, new ProductName("music CD"), 14.99, false),
+                        new SaleLine(2, new ProductName("box of chips"), 10.00, false));
     }
 
     @ParameterizedTest
@@ -64,7 +65,7 @@ class ConsoleSaleLinesReaderShould {
         assertThat(saleLines)
                 .usingRecursiveFieldByFieldElementComparator()
                 .containsExactly(
-                        new SaleLine(1, "imported box of chocolates", 11.25, true));
+                        new SaleLine(1, new ProductName("imported box of chocolates"), 11.25, true));
     }
 
     private ConsoleSaleLinesReader saleLineReader() {
