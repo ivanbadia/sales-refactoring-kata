@@ -4,7 +4,7 @@ import com.supermarket.domain.product.Product;
 import com.supermarket.domain.product.ProductName;
 import com.supermarket.domain.product.ProductType;
 import com.supermarket.domain.product.Products;
-import com.supermarket.domain.sales.SaleLine;
+import com.supermarket.domain.sales.SaleItem;
 import com.supermarket.domain.shared.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static com.supermarket.domain.product.ProductType.GENERAL;
-import static com.supermarket.domain.sales.SaleLineBuilder.aSaleLine;
+import static com.supermarket.domain.sales.SaleItemBuilder.aSaleItem;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 
@@ -25,7 +25,7 @@ import static org.mockito.BDDMockito.given;
 class TaxRateProviderShould {
     private static final int BASE_TAX = 10;
     private static final ProductName PRODUCT_NAME = new ProductName("product");
-    private static final SaleLine NON_IMPORTED_SALE_ITEM = new SaleLine(1, PRODUCT_NAME, new Money(12.3), false);
+    private static final SaleItem NON_IMPORTED_SALE_ITEM = new SaleItem(1, PRODUCT_NAME, new Money(12.3), false);
 
     @Mock
     private Products products;
@@ -65,7 +65,7 @@ class TaxRateProviderShould {
         given(products.by(PRODUCT_NAME))
                 .willReturn(Optional.of(new Product(PRODUCT_NAME, GENERAL)));
 
-        int taxRate = taxRateProvider.taxRateFor(aSaleLine().withName(PRODUCT_NAME).imported().build());
+        int taxRate = taxRateProvider.taxRateFor(aSaleItem().withName(PRODUCT_NAME).imported().build());
 
         assertThat(taxRate)
                 .isEqualTo(15);

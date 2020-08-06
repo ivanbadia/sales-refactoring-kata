@@ -2,7 +2,7 @@ package com.supermarket.domain.receipt;
 
 import com.supermarket.domain.product.Product;
 import com.supermarket.domain.product.Products;
-import com.supermarket.domain.sales.SaleLine;
+import com.supermarket.domain.sales.SaleItem;
 
 import java.util.function.Function;
 
@@ -19,12 +19,12 @@ public class TaxRateProvider {
         this.products = products;
     }
 
-    public int taxRateFor(SaleLine saleLine) {
-        int taxRate = products.by(saleLine.getProductName())
+    public int taxRateFor(SaleItem saleItem) {
+        int taxRate = products.by(saleItem.getProductName())
                 .map(toTaxRateForProduct())
                 .orElse(BASE_TAX);
 
-        if (saleLine.isImported()) {
+        if (saleItem.isImported()) {
             return taxRate + EXTRA_TAX_FOR_IMPORTED_PRODUCTS;
         } else {
             return taxRate;

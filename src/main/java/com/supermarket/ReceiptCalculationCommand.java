@@ -6,22 +6,22 @@ import com.supermarket.domain.sales.*;
 import com.supermarket.infrastructure.view.Output;
 
 public class ReceiptCalculationCommand {
-    private final SaleLines saleLines;
+    private final SaleItems saleItems;
     private final ReceiptCalculator receiptCalculator;
     private final Output output;
 
-    public ReceiptCalculationCommand(SaleLines saleLines, ReceiptCalculator receiptCalculator, Output output) {
-        this.saleLines = saleLines;
+    public ReceiptCalculationCommand(SaleItems saleItems, ReceiptCalculator receiptCalculator, Output output) {
+        this.saleItems = saleItems;
         this.receiptCalculator = receiptCalculator;
         this.output = output;
     }
 
     public void execute() {
         try {
-            Receipt receipt = receiptCalculator.receiptFor(saleLines.all());
+            Receipt receipt = receiptCalculator.receiptFor(saleItems.all());
             output.display(receipt);
-        } catch (ErrorReadingSaleLinesException e) {
-            output.error("It was not possible to read the sale lines. Try again.");
+        } catch (ErrorReadingSaleItemsException e) {
+            output.error("It was not possible to read the sale items. Try again.");
         }
     }
 }

@@ -14,7 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static com.supermarket.domain.sales.SaleLineBuilder.aSaleLine;
+import static com.supermarket.domain.sales.SaleItemBuilder.aSaleItem;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
@@ -36,14 +36,14 @@ class ReceiptCalculatorShould {
 
     @Test
     void calculate_receipt() {
-        List<SaleLine> saleLines = List.of(
-                aSaleLine().withQuantity(1).withName(MUSIC_CD).withUnitPrice(12.49).build(),
-                aSaleLine().withQuantity(2).withName(BOTTLE_OF_PERFUME).withUnitPrice(19.05).imported().build()
+        List<SaleItem> saleItems = List.of(
+                aSaleItem().withQuantity(1).withName(MUSIC_CD).withUnitPrice(12.49).build(),
+                aSaleItem().withQuantity(2).withName(BOTTLE_OF_PERFUME).withUnitPrice(19.05).imported().build()
         );
-        given(taxRateProvider.taxRateFor(saleLines.get(0))).willReturn(10);
-        given(taxRateProvider.taxRateFor(saleLines.get(1))).willReturn(15);
+        given(taxRateProvider.taxRateFor(saleItems.get(0))).willReturn(10);
+        given(taxRateProvider.taxRateFor(saleItems.get(1))).willReturn(15);
 
-        Receipt receipt = receiptCalculator.receiptFor(saleLines);
+        Receipt receipt = receiptCalculator.receiptFor(saleItems);
 
         Receipt expectedReceipt = new Receipt(
                 7.0,

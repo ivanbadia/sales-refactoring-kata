@@ -1,6 +1,6 @@
 package com.supermarket.domain.receipt;
 
-import com.supermarket.domain.sales.SaleLine;
+import com.supermarket.domain.sales.SaleItem;
 import com.supermarket.domain.shared.Money;
 
 import java.util.ArrayList;
@@ -13,15 +13,15 @@ public class ReceiptCalculator {
         this.taxRateProvider = taxRateProvider;
     }
 
-    public Receipt receiptFor(List<SaleLine> saleLines) {
+    public Receipt receiptFor(List<SaleItem> saleItems) {
         double totalTaxAmount = 0.0;
 
         List<ReceiptLine> lines = new ArrayList<>();
-        for (SaleLine saleLine : saleLines) {
-            int taxRate = taxRateProvider.taxRateFor(saleLine);
-            double saleLineTax = CalculateTax(saleLine.getTotalAmount(), taxRate);
-            lines.add(new ReceiptLine(saleLine.getQuantity(), saleLine.getProductName(), new Money(saleLine.getTotalAmount().asDouble() + saleLineTax), saleLine.isImported()));
-            totalTaxAmount += saleLineTax;
+        for (SaleItem saleItem : saleItems) {
+            int taxRate = taxRateProvider.taxRateFor(saleItem);
+            double saleItemTax = CalculateTax(saleItem.getTotalAmount(), taxRate);
+            lines.add(new ReceiptLine(saleItem.getQuantity(), saleItem.getProductName(), new Money(saleItem.getTotalAmount().asDouble() + saleItemTax), saleItem.isImported()));
+            totalTaxAmount += saleItemTax;
         }
 
         return new Receipt(totalTaxAmount, lines);

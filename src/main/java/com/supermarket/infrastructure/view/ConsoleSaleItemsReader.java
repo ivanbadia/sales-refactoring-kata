@@ -1,36 +1,36 @@
 package com.supermarket.infrastructure.view;
 
-import com.supermarket.domain.sales.ErrorReadingSaleLinesException;
-import com.supermarket.domain.sales.SaleLines;
-import com.supermarket.domain.sales.SaleLine;
+import com.supermarket.domain.sales.ErrorReadingSaleItemsException;
+import com.supermarket.domain.sales.SaleItems;
+import com.supermarket.domain.sales.SaleItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConsoleSaleLinesReader implements SaleLines {
+public class ConsoleSaleItemsReader implements SaleItems {
     private final Console console;
-    private final SaleLineParser saleLineParser;
+    private final SaleItemParser saleItemParser;
 
-    public ConsoleSaleLinesReader(Console console, SaleLineParser saleLineParser) {
+    public ConsoleSaleItemsReader(Console console, SaleItemParser saleItemParser) {
         this.console = console;
-        this.saleLineParser = saleLineParser;
+        this.saleItemParser = saleItemParser;
     }
 
     @Override
-    public List<SaleLine> all() {
+    public List<SaleItem> all() {
         console.printLine("Enter sales in the format <qty> <description> at <unit price>\nFor example: 2 books at 13.25\nEntering a blank line completes the sale\n");
-        List<SaleLine> saleLines = new ArrayList<>();
+        List<SaleItem> saleItems = new ArrayList<>();
         String line = getInput();
         while (isNotEmpty(line)) {
-            saleLineParser.parse(line)
-                    .ifPresentOrElse(saleLines::add, throwErrorReadingSaleLine);
+            saleItemParser.parse(line)
+                    .ifPresentOrElse(saleItems::add, throwErrorReadingSaleItem);
             line = getInput();
         }
-        return saleLines;
+        return saleItems;
     }
 
-    private final Runnable throwErrorReadingSaleLine = () -> {
-        throw new ErrorReadingSaleLinesException();
+    private final Runnable throwErrorReadingSaleItem = () -> {
+        throw new ErrorReadingSaleItemsException();
     };
 
     private String getInput() {

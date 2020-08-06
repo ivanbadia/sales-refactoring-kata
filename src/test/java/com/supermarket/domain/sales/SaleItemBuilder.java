@@ -3,39 +3,39 @@ package com.supermarket.domain.sales;
 import com.supermarket.domain.product.ProductName;
 import com.supermarket.domain.shared.Money;
 
-public class SaleLineBuilder {
+public class SaleItemBuilder {
 
     private int quantity = 1;
     private ProductName name = new ProductName("book");
     private Money unitPrice = new Money(12.49);
     private boolean isImported = false;
 
-    public static SaleLineBuilder aSaleLine() {
-        return new SaleLineBuilder();
+    public static SaleItemBuilder aSaleItem() {
+        return new SaleItemBuilder();
     }
 
 
-    public SaleLineBuilder withQuantity(int quantity) {
+    public SaleItemBuilder withQuantity(int quantity) {
         this.quantity = quantity;
         return this;
     }
 
-    public SaleLineBuilder withName(ProductName name) {
+    public SaleItemBuilder withName(ProductName name) {
         this.name = name;
         return this;
     }
 
-    public SaleLineBuilder withUnitPrice(double unitPrice) {
+    public SaleItemBuilder withUnitPrice(double unitPrice) {
         this.unitPrice = new Money(unitPrice);
         return this;
     }
 
-    public SaleLineBuilder imported() {
+    public SaleItemBuilder imported() {
         isImported = true;
         return this;
     }
 
-    public SaleLine build() {
-        return new SaleLine(quantity, name, unitPrice, isImported);
+    public SaleItem build() {
+        return new SaleItem(quantity, name, unitPrice, isImported);
     }
 }

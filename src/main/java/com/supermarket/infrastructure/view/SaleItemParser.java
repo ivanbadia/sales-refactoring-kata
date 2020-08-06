@@ -1,26 +1,26 @@
 package com.supermarket.infrastructure.view;
 
 import com.supermarket.domain.product.ProductName;
-import com.supermarket.domain.sales.SaleLine;
+import com.supermarket.domain.sales.SaleItem;
 import com.supermarket.domain.shared.Money;
 
 import java.util.Optional;
 
 import static java.lang.Double.parseDouble;
 
-public class SaleLineParser {
+public class SaleItemParser {
 
     public static final int QUANTITY_POSITION = 0;
 
-    public Optional<SaleLine> parse(String input) {
+    public Optional<SaleItem> parse(String input) {
         String[] words = input.split(" ");
         if (hasLessThanFourWords(words)) {
             return Optional.empty();
         }
-        return saleLineFrom(words);
+        return saleItemFrom(words);
     }
 
-    private Optional<SaleLine> saleLineFrom(String[] words) {
+    private Optional<SaleItem> saleItemFrom(String[] words) {
         try {
             String productName = productNameFrom(words);
             if (productName.isEmpty()) {
@@ -35,7 +35,7 @@ public class SaleLineParser {
                 productName = removeImportedFrom(productName);
             }
 
-            return Optional.of(new SaleLine(quantity, new ProductName(productName), new Money(price), isImported));
+            return Optional.of(new SaleItem(quantity, new ProductName(productName), new Money(price), isImported));
 
         } catch (NumberFormatException e) {
             return Optional.empty();
