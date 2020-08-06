@@ -15,12 +15,10 @@ public class InMemoryProducts implements Products {
             new Product(new ProductName("book"), BOOK),
             new Product(new ProductName("packet of chips"), FOOD),
             new Product(new ProductName("box of chips"), FOOD),
-            new Product(new ProductName("imported box of chips"), FOOD),
-            new Product(new ProductName("imported boxes of potato chips"), FOOD),
+            new Product(new ProductName("boxes of potato chips"), FOOD),
             new Product(new ProductName("packet of headache tablets"), MEDICAL_ITEM),
-            new Product(new ProductName("imported box of chocolates"), FOOD),
-            new Product(new ProductName("packets of iodine tablets"), MEDICAL_ITEM),
-            new Product(new ProductName("imported boxes of potato chips"), MEDICAL_ITEM)
+            new Product(new ProductName("box of chocolates"), FOOD),
+            new Product(new ProductName("packets of iodine tablets"), MEDICAL_ITEM)
     );
 
 

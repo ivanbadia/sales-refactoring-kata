@@ -36,7 +36,7 @@ class ReceiptCalculatorShould {
     void calculate_receipt() {
         List<SaleLine> saleLines = List.of(
                 new SaleLine(1, MUSIC_CD, 12.49, false),
-                new SaleLine(2, BOTTLE_OF_PERFUME, 19.05, false)
+                new SaleLine(2, BOTTLE_OF_PERFUME, 19.05, true)
         );
         given(taxRateProvider.taxRateFor(saleLines.get(0))).willReturn(10);
         given(taxRateProvider.taxRateFor(saleLines.get(1))).willReturn(15);
@@ -46,8 +46,8 @@ class ReceiptCalculatorShould {
         Receipt expectedReceipt = new Receipt(
                 7.0,
                 List.of(
-                        new ReceiptLine(1, MUSIC_CD, 13.74),
-                        new ReceiptLine(2, BOTTLE_OF_PERFUME, 43.85)
+                        new ReceiptLine(1, MUSIC_CD, 13.74, false),
+                        new ReceiptLine(2, BOTTLE_OF_PERFUME, 43.85, true)
                 )
         );
         assertThat(receipt)

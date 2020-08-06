@@ -6,12 +6,14 @@ public class ReceiptLine
 {
     private ProductName productName;
     private int quantity;
-    private double amount;
+    private double totalAmount;
+    private boolean imported;
 
-    public ReceiptLine(int quantity, ProductName productName, double amount) {
+    public ReceiptLine(int quantity, ProductName productName, double totalAmount, boolean imported) {
         this.productName = productName;
         this.quantity = quantity;
-        this.amount = amount;
+        this.totalAmount = totalAmount;
+        this.imported = imported;
     }
 
     public ProductName getProductName() {
@@ -22,7 +24,11 @@ public class ReceiptLine
         return quantity;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public boolean isImported() {
+        return imported;
     }
 }

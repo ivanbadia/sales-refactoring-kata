@@ -29,7 +29,7 @@ public class SaleLineParser {
 
             boolean isImported = productName.contains("imported ");
             if (isImported) {
-                productName = moveImportedWordToTheFront(productName);
+                productName = removeImportedFrom(productName);
             }
 
             return Optional.of(new SaleLine(quantity, new ProductName(productName), price, isImported));
@@ -39,8 +39,8 @@ public class SaleLineParser {
         }
     }
 
-    private String moveImportedWordToTheFront(String productName) {
-        return "imported " + productName.replace("imported ", "");
+    private String removeImportedFrom(String productName) {
+        return productName.replace("imported ", "");
     }
 
     private String productNameFrom(String[] words) {

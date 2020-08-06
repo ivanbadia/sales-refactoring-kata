@@ -1,11 +1,9 @@
 package com.supermarket.domain.receipt;
 
-import com.supermarket.domain.product.Products;
 import com.supermarket.domain.sales.SaleLine;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class ReceiptCalculator {
     public static final int DEFAULT_TAX_RATE = 10;
@@ -22,7 +20,7 @@ public class ReceiptCalculator {
         for (SaleLine saleLine : saleLines) {
             int taxRate = taxRateProvider.taxRateFor(saleLine);
             double lineTax = CalculateTax(saleLine.getTotalAmount(), taxRate);
-            lines.add(new ReceiptLine(saleLine.getQuantity(), saleLine.getProductName(), saleLine.getTotalAmount() + lineTax));
+            lines.add(new ReceiptLine(saleLine.getQuantity(), saleLine.getProductName(), saleLine.getTotalAmount() + lineTax, saleLine.isImported()));
             totalTaxAmount += lineTax;
         }
 

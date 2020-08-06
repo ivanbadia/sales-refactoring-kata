@@ -21,7 +21,7 @@ public class Receipt {
 
     public double getTotal() {
         return lines.stream()
-                .map(ReceiptLine::getAmount)
+                .map(ReceiptLine::getTotalAmount)
                 .reduce(0.0, Double::sum);
     }
 }

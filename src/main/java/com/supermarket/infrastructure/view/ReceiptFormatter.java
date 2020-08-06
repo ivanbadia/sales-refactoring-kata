@@ -12,7 +12,11 @@ public class ReceiptFormatter {
     StringBuilder format(Receipt receipt) {
         StringBuilder output = new StringBuilder();
         for (ReceiptLine line : receipt.getLines()) {
-            output.append(String.format("%d %s: %s", line.getQuantity(), line.getProductName().asString(), new DecimalFormat("#,##0.00").format(line.getAmount())));
+            String description = line.getProductName().asString();
+            if(line.isImported()) {
+                description = "imported " + description;
+            }
+            output.append(String.format("%d %s: %s", line.getQuantity(), description, new DecimalFormat("#,##0.00").format(line.getTotalAmount())));
             output.append("\n");
         }
         output.append(String.format("Sales Taxes: %s", new DecimalFormat("#,##0.00").format(receipt.getTaxes())));

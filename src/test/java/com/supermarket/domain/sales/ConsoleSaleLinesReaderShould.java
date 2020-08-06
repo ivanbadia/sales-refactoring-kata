@@ -65,7 +65,7 @@ class ConsoleSaleLinesReaderShould {
         assertThat(saleLines)
                 .usingRecursiveFieldByFieldElementComparator()
                 .containsExactly(
-                        new SaleLine(1, new ProductName("imported box of chocolates"), 11.25, true));
+                        new SaleLine(1, new ProductName("box of chocolates"), 11.25, true));
     }
 
     private ConsoleSaleLinesReader saleLineReader() {

@@ -23,15 +23,15 @@ class ConsoleOutputShould {
         Receipt receipt = new Receipt(
                 5.70,
                 List.of(
-                        new ReceiptLine(1, new ProductName("box of chips"), 12.3),
-                new ReceiptLine(2, new ProductName("music CD"), 44.60))
+                        new ReceiptLine(1, new ProductName("box of chips"), 12.3, false),
+                new ReceiptLine(2, new ProductName("music CD"), 44.60, true))
         );
 
 
         new ConsoleOutput(console, new ReceiptFormatter()).display(receipt);
 
         String expectedReceipt = "1 box of chips: 12.30\n" +
-                "2 music CD: 44.60\n" +
+                "2 imported music CD: 44.60\n" +
                 "Sales Taxes: 5.70\n" +
                 "Total: 56.90\n";
         verify(console).printLine(expectedReceipt);
