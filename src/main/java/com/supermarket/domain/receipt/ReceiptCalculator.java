@@ -12,21 +12,25 @@ public class ReceiptCalculator {
 
         List<ReceiptLine> lines = new ArrayList<>();
         for (SaleLine saleLine : saleLines) {
-            int taxRate;
-            //TODO
-            if (saleLine.getProductName().contains("book") || saleLine.getProductName().contains("tablet") || saleLine.getProductName().contains("chip") || saleLine.getProductName().contains("chocolate"))
-                taxRate = 0;  //No base tax applicable for books, medicals items or food
-            else
-                taxRate = 10; //10% base tax or general products
-            if (saleLine.isImported())
-                taxRate += 5; //5% regardless for any imported items
-
+            int taxRate = taxRateFor(saleLine);
             double lineTax = CalculateTax(saleLine.getTotalAmount(), taxRate);
             lines.add(new ReceiptLine(saleLine.getQuantity(), saleLine.getProductName(), saleLine.getTotalAmount() + lineTax));
             totalTaxAmount += lineTax;
         }
 
         return new Receipt(totalTaxAmount, lines);
+    }
+
+    private int taxRateFor(SaleLine saleLine) {
+        int taxRate;
+        //TODO
+        if (saleLine.getProductName().contains("book") || saleLine.getProductName().contains("tablet") || saleLine.getProductName().contains("chip") || saleLine.getProductName().contains("chocolate"))
+            taxRate = 0;  //No base tax applicable for books, medicals items or food
+        else
+            taxRate = 10; //10% base tax or general products
+        if (saleLine.isImported())
+            taxRate += 5; //5% regardless for any imported items
+        return taxRate;
     }
 
 

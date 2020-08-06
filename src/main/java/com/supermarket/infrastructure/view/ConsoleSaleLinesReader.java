@@ -23,11 +23,15 @@ public class ConsoleSaleLinesReader implements SaleLines {
         String line = getInput();
         while (isNotEmpty(line)) {
             saleLineParser.parse(line)
-                    .ifPresentOrElse(saleLines::add, () -> { throw new ErrorReadingSaleLinesException(); });
+                    .ifPresentOrElse(saleLines::add, throwErrorReadingSaleLine);
             line = getInput();
         }
         return saleLines;
     }
+
+    private final Runnable throwErrorReadingSaleLine = () -> {
+        throw new ErrorReadingSaleLinesException();
+    };
 
     private String getInput() {
         console.printLine("Sale : ");
