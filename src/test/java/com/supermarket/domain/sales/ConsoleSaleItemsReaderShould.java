@@ -49,7 +49,7 @@ class ConsoleSaleItemsReaderShould {
 
     @ParameterizedTest
     @ValueSource(strings = {"1 book 12.49", "a book at 12.49", "1 book at d", "1    at 12.49"})
-    void inform_sale_item_is_not_valid(String input) {
+    void fail_if_sale_item_is_not_valid(String input) {
         writeInput(input + "\n\n");
 
         Throwable exception = catchThrowable( () -> saleItemReader().all());
