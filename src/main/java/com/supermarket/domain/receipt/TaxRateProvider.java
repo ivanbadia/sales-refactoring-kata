@@ -26,9 +26,9 @@ public class TaxRateProvider {
 
         if (saleItem.isImported()) {
             return taxRate + EXTRA_TAX_FOR_IMPORTED_PRODUCTS;
-        } else {
-            return taxRate;
         }
+
+        return taxRate;
     }
 
     private Function<Product, Integer> toTaxRateForProduct() {
