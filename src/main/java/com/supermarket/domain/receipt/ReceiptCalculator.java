@@ -21,9 +21,8 @@ public class ReceiptCalculator {
             if (saleLine.isImported())
                 taxRate += 5; //5% regardless for any imported items
 
-            //TODO
-            double lineTax = CalculateTax(saleLine.getPrice() * saleLine.getQuantity(), taxRate);
-            lines.add(new ReceiptLine(saleLine.getQuantity(), saleLine.getProductName(), (saleLine.getPrice() * saleLine.getQuantity()) + lineTax));
+            double lineTax = CalculateTax(saleLine.getTotalAmount(), taxRate);
+            lines.add(new ReceiptLine(saleLine.getQuantity(), saleLine.getProductName(), saleLine.getTotalAmount() + lineTax));
             totalTaxAmount += lineTax;
         }
 

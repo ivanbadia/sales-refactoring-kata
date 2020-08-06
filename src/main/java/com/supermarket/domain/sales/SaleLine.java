@@ -6,23 +6,6 @@ public class SaleLine {
     private boolean isImported;
     private int quantity;
 
-    public String getProductName() {
-        return productName;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public boolean isImported() {
-        return isImported;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-
     public SaleLine(int lineQuantity, String name, double unitPrice, boolean itemIsImported) {
         if (name == null || name.isEmpty()) name = "";
 
@@ -32,4 +15,19 @@ public class SaleLine {
         isImported = itemIsImported;
     }
 
+    public double getTotalAmount() {
+        return price * quantity;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public boolean isImported() {
+        return isImported;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }
