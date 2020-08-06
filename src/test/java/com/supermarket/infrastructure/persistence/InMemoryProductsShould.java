@@ -11,13 +11,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class InMemoryProductsShould {
 
+    public static final ProductName BOOK = new ProductName("book");
+
     @Test
     void return_product() {
-        Optional<Product> product = new InMemoryProducts().by(new ProductName("book"));
+        Optional<Product> product = new InMemoryProducts().by(BOOK);
         assertThat(product)
                 .isPresent();
         assertThat(product.get())
                 .usingRecursiveComparison()
-                .isEqualTo(new Product(new ProductName("book"), ProductType.BOOK));
+                .isEqualTo(new Product(BOOK, ProductType.BOOK));
     }
 }

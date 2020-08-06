@@ -1,16 +1,19 @@
 package com.supermarket.domain.sales;
 
+import com.supermarket.domain.product.ProductName;
+
 public class SaleLine {
-    private String productName;
+    private ProductName productName;
     private double price;
     private boolean isImported;
     private int quantity;
 
     public SaleLine(int lineQuantity, String name, double unitPrice, boolean itemIsImported) {
+        //TODO A STRING
         if (name == null || name.isEmpty()) name = "";
 
         quantity = lineQuantity;
-        productName = name;
+        productName = new ProductName(name);
         price = unitPrice;
         isImported = itemIsImported;
     }
@@ -19,7 +22,7 @@ public class SaleLine {
         return price * quantity;
     }
 
-    public String getProductName() {
+    public ProductName getProductName() {
         return productName;
     }
 

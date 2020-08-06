@@ -1,5 +1,6 @@
 package com.supermarket.infrastructure.view;
 
+import com.supermarket.domain.product.ProductName;
 import com.supermarket.domain.receipt.Receipt;
 import com.supermarket.domain.receipt.ReceiptLine;
 import org.junit.jupiter.api.Test;
@@ -22,8 +23,8 @@ class ConsoleOutputShould {
         Receipt receipt = new Receipt(
                 5.70,
                 List.of(
-                        new ReceiptLine(1, "box of chips", 12.3),
-                new ReceiptLine(2, "music CD", 44.60))
+                        new ReceiptLine(1, new ProductName("box of chips"), 12.3),
+                new ReceiptLine(2, new ProductName("music CD"), 44.60))
         );
 
 

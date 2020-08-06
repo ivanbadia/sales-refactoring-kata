@@ -4,4 +4,5 @@ public enum ProductType {
     BOOK,
     MEDICAL_ITEM,
     FOOD,
+    GENERAL
 }

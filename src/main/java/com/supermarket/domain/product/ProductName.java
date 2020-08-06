@@ -9,6 +9,10 @@ public class ProductName {
         this.value = value;
     }
 
+    public String asString() {
+        return this.value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

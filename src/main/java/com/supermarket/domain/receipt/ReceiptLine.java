@@ -1,18 +1,20 @@
 package com.supermarket.domain.receipt;
 
+import com.supermarket.domain.product.ProductName;
+
 public class ReceiptLine
 {
-    private String productName;
+    private ProductName productName;
     private int quantity;
     private double amount;
 
-    public ReceiptLine(int quantity, String productName, double amount) {
+    public ReceiptLine(int quantity, ProductName productName, double amount) {
         this.productName = productName;
         this.quantity = quantity;
         this.amount = amount;
     }
 
-    public String getProductName() {
+    public ProductName getProductName() {
         return productName;
     }
 
