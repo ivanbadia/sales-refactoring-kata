@@ -50,23 +50,28 @@ class ConsoleSaleItemsReaderShould {
     @ParameterizedTest
     @ValueSource(strings = {"1 book 12.49", "a book at 12.49", "1 book at d", "1    at 12.49"})
     void fail_if_sale_item_is_not_valid(String input) {
-        writeInput(input + "\n\n");
+        writeInput(input);
 
-        Throwable exception = catchThrowable( () -> saleItemReader().all());
+        Throwable exception = catchThrowable(() -> saleItemReader().all());
 
         assertThat(exception).isInstanceOf(ErrorReadingSaleItemsException.class);
     }
 
     @Test
     void read_imported_sale_items() {
-        writeInput("1 box of imported chocolates at 11.25\n\n");
+        writeInput("1 box of imported chocolates at 11.25");
 
         List<SaleItem> saleItems = saleItemReader().all();
 
+        SaleItem expectedSaleItem = aSaleItem()
+                .withQuantity(1)
+                .withName(new ProductName("box of chocolates"))
+                .withUnitPrice(11.25)
+                .imported()
+                .build();
         assertThat(saleItems)
                 .usingRecursiveFieldByFieldElementComparator()
-                .containsExactly(
-                        aSaleItem().withQuantity(1).withName(new ProductName("box of chocolates")).withUnitPrice(11.25).imported().build());
+                .containsExactly(expectedSaleItem);
     }
 
     private ConsoleSaleItemsReader saleItemReader() {
@@ -74,7 +79,7 @@ class ConsoleSaleItemsReaderShould {
     }
 
     private void writeInput(String input) {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes(UTF_8));
+        ByteArrayInputStream inputStream = new ByteArrayInputStream((input + "\n\n").getBytes(UTF_8));
         System.setIn(inputStream);
     }
 }
