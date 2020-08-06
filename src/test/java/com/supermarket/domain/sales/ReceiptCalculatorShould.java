@@ -5,6 +5,7 @@ import com.supermarket.domain.receipt.Receipt;
 import com.supermarket.domain.receipt.ReceiptCalculator;
 import com.supermarket.domain.receipt.ReceiptLine;
 import com.supermarket.domain.receipt.TaxRateProvider;
+import com.supermarket.domain.shared.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
+import static com.supermarket.domain.sales.SaleLineBuilder.aSaleLine;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
@@ -35,8 +37,8 @@ class ReceiptCalculatorShould {
     @Test
     void calculate_receipt() {
         List<SaleLine> saleLines = List.of(
-                new SaleLine(1, MUSIC_CD, 12.49, false),
-                new SaleLine(2, BOTTLE_OF_PERFUME, 19.05, true)
+                aSaleLine().withQuantity(1).withName(MUSIC_CD).withUnitPrice(12.49).build(),
+                aSaleLine().withQuantity(2).withName(BOTTLE_OF_PERFUME).withUnitPrice(19.05).imported().build()
         );
         given(taxRateProvider.taxRateFor(saleLines.get(0))).willReturn(10);
         given(taxRateProvider.taxRateFor(saleLines.get(1))).willReturn(15);
@@ -46,8 +48,8 @@ class ReceiptCalculatorShould {
         Receipt expectedReceipt = new Receipt(
                 7.0,
                 List.of(
-                        new ReceiptLine(1, MUSIC_CD, 13.74, false),
-                        new ReceiptLine(2, BOTTLE_OF_PERFUME, 43.85, true)
+                        new ReceiptLine(1, MUSIC_CD, new Money(13.74), false),
+                        new ReceiptLine(2, BOTTLE_OF_PERFUME, new Money(43.85), true)
                 )
         );
         assertThat(receipt)

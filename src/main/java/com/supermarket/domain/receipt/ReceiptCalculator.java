@@ -1,6 +1,7 @@
 package com.supermarket.domain.receipt;
 
 import com.supermarket.domain.sales.SaleLine;
+import com.supermarket.domain.shared.Money;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class ReceiptCalculator {
         for (SaleLine saleLine : saleLines) {
             int taxRate = taxRateProvider.taxRateFor(saleLine);
             double saleLineTax = CalculateTax(saleLine.getTotalAmount(), taxRate);
-            lines.add(new ReceiptLine(saleLine.getQuantity(), saleLine.getProductName(), saleLine.getTotalAmount() + saleLineTax, saleLine.isImported()));
+            lines.add(new ReceiptLine(saleLine.getQuantity(), saleLine.getProductName(), new Money(saleLine.getTotalAmount().asDouble() + saleLineTax), saleLine.isImported()));
             totalTaxAmount += saleLineTax;
         }
 
@@ -27,8 +28,8 @@ public class ReceiptCalculator {
     }
 
 
-    public static double CalculateTax(double value, int taxRate) {
-        double amount = (value * taxRate) / 100;
+    public static double CalculateTax(Money value, int taxRate) {
+        double amount = (value.asDouble() * taxRate) / 100;
         return roundUpToNearestFiveCents(amount);
     }
 

@@ -12,12 +12,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
+import static com.supermarket.domain.sales.SaleLineBuilder.aSaleLine;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class ReceiptCalculationCommandShould {
-    private static final List<SaleLine> SALE_LINES = List.of(new SaleLine(1, new ProductName("book"), 12.49, false));
+    private static final List<SaleLine> SALE_LINES = List.of(aSaleLine().build());
     private static final Receipt RECEIPT = new Receipt(0, List.of());
 
     @Mock

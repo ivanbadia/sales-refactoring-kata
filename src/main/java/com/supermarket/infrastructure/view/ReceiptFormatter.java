@@ -16,12 +16,12 @@ public class ReceiptFormatter {
             if(line.isImported()) {
                 description = "imported " + description;
             }
-            output.append(String.format("%d %s: %s", line.getQuantity(), description, new DecimalFormat("#,##0.00").format(line.getTotalAmount())));
+            output.append(String.format("%d %s: %s", line.getQuantity(), description, new DecimalFormat("#,##0.00").format(line.getTotalAmount().asDouble())));
             output.append("\n");
         }
         output.append(String.format("Sales Taxes: %s", new DecimalFormat("#,##0.00").format(receipt.getTaxes())));
         output.append("\n");
-        output.append(String.format("Total: %s", new DecimalFormat("#,##0.00").format(receipt.getTotal())));
+        output.append(String.format("Total: %s", new DecimalFormat("#,##0.00").format(receipt.getTotal().asDouble())));
         output.append("\n");
         return output;
     }

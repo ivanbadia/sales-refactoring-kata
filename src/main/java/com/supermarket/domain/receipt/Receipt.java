@@ -1,5 +1,7 @@
 package com.supermarket.domain.receipt;
 
+import com.supermarket.domain.shared.Money;
+
 import java.util.List;
 
 public class Receipt {
@@ -19,9 +21,9 @@ public class Receipt {
         return taxes;
     }
 
-    public double getTotal() {
+    public Money getTotal() {
         return lines.stream()
                 .map(ReceiptLine::getTotalAmount)
-                .reduce(0.0, Double::sum);
+                .reduce(Money.ZERO, Money::sum);
     }
 }

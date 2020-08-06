@@ -3,6 +3,7 @@ package com.supermarket.infrastructure.view;
 import com.supermarket.domain.product.ProductName;
 import com.supermarket.domain.receipt.Receipt;
 import com.supermarket.domain.receipt.ReceiptLine;
+import com.supermarket.domain.shared.Money;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -23,8 +24,8 @@ class ConsoleOutputShould {
         Receipt receipt = new Receipt(
                 5.70,
                 List.of(
-                        new ReceiptLine(1, new ProductName("box of chips"), 12.3, false),
-                new ReceiptLine(2, new ProductName("music CD"), 44.60, true))
+                        new ReceiptLine(1, new ProductName("box of chips"), new Money(12.3), false),
+                new ReceiptLine(2, new ProductName("music CD"), new Money(44.60), true))
         );
 
 

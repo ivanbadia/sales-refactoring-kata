@@ -14,6 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
 
+import static com.supermarket.domain.sales.SaleLineBuilder.aSaleLine;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
@@ -41,9 +42,9 @@ class ConsoleSaleLinesReaderShould {
         assertThat(saleLines)
                 .usingRecursiveFieldByFieldElementComparator()
                 .containsExactly(
-                        new SaleLine(1, new ProductName("book"), 12.49, false),
-                        new SaleLine(1, new ProductName("music CD"), 14.99, false),
-                        new SaleLine(2, new ProductName("box of chips"), 10.00, false));
+                        aSaleLine().withQuantity(1).withName(new ProductName("book")).withUnitPrice(12.49).build(),
+                        aSaleLine().withQuantity(1).withName(new ProductName("music CD")).withUnitPrice(14.99).build(),
+                        aSaleLine().withQuantity(2).withName(new ProductName("box of chips")).withUnitPrice(10.00).build());
     }
 
     @ParameterizedTest
@@ -65,7 +66,7 @@ class ConsoleSaleLinesReaderShould {
         assertThat(saleLines)
                 .usingRecursiveFieldByFieldElementComparator()
                 .containsExactly(
-                        new SaleLine(1, new ProductName("box of chocolates"), 11.25, true));
+                        aSaleLine().withQuantity(1).withName(new ProductName("box of chocolates")).withUnitPrice(11.25).imported().build());
     }
 
     private ConsoleSaleLinesReader saleLineReader() {

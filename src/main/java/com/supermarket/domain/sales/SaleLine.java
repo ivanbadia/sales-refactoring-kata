@@ -1,22 +1,23 @@
 package com.supermarket.domain.sales;
 
 import com.supermarket.domain.product.ProductName;
+import com.supermarket.domain.shared.Money;
 
 public class SaleLine {
     private ProductName productName;
-    private double price;
+    private Money unitPrice;
     private boolean isImported;
     private int quantity;
 
-    public SaleLine(int lineQuantity, ProductName name, double unitPrice, boolean itemIsImported) {
-        quantity = lineQuantity;
-        productName = name;
-        price = unitPrice;
-        isImported = itemIsImported;
+    public SaleLine(int quantity, ProductName name, Money unitPrice, boolean isImported) {
+        this.quantity = quantity;
+        this.productName = name;
+        this.unitPrice = unitPrice;
+        this.isImported = isImported;
     }
 
-    public double getTotalAmount() {
-        return price * quantity;
+    public Money getTotalAmount() {
+        return new Money(unitPrice.asDouble() * quantity);
     }
 
     public ProductName getProductName() {

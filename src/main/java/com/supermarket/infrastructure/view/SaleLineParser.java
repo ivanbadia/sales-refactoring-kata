@@ -2,8 +2,11 @@ package com.supermarket.infrastructure.view;
 
 import com.supermarket.domain.product.ProductName;
 import com.supermarket.domain.sales.SaleLine;
+import com.supermarket.domain.shared.Money;
 
 import java.util.Optional;
+
+import static java.lang.Double.parseDouble;
 
 public class SaleLineParser {
 
@@ -25,14 +28,14 @@ public class SaleLineParser {
             }
 
             int quantity = Integer.parseInt(words[QUANTITY_POSITION]);
-            double price = Double.parseDouble(lastWordOf(words));
+            double price = parseDouble(lastWordOf(words));
 
             boolean isImported = productName.contains("imported ");
             if (isImported) {
                 productName = removeImportedFrom(productName);
             }
 
-            return Optional.of(new SaleLine(quantity, new ProductName(productName), price, isImported));
+            return Optional.of(new SaleLine(quantity, new ProductName(productName), new Money(price), isImported));
 
         } catch (NumberFormatException e) {
             return Optional.empty();
