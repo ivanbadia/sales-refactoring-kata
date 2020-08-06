@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReceiptCalculator {
-    private TaxRateProvider taxRateProvider;
+    private final TaxRateProvider taxRateProvider;
 
     public ReceiptCalculator(TaxRateProvider taxRateProvider) {
         this.taxRateProvider = taxRateProvider;
@@ -19,7 +19,7 @@ public class ReceiptCalculator {
         List<ReceiptLine> lines = new ArrayList<>();
         for (SaleItem saleItem : saleItems) {
             int taxRate = taxRateProvider.taxRateFor(saleItem);
-            double saleItemTax = CalculateTax(saleItem.getTotalAmount(), taxRate);
+            double saleItemTax = calculateTax(saleItem.getTotalAmount(), taxRate);
             lines.add(new ReceiptLine(saleItem.getQuantity(), saleItem.getProductName(), new Money(saleItem.getTotalAmount().asDouble() + saleItemTax), saleItem.isImported()));
             totalTaxAmount += saleItemTax;
         }
@@ -28,12 +28,12 @@ public class ReceiptCalculator {
     }
 
 
-    public static double CalculateTax(Money value, int taxRate) {
+    private double calculateTax(Money value, int taxRate) {
         double amount = (value.asDouble() * taxRate) / 100;
         return roundUpToNearestFiveCents(amount);
     }
 
-    private static double roundUpToNearestFiveCents(double amount) {
+    private double roundUpToNearestFiveCents(double amount) {
         double remainder = amount % .05;
         if (remainder > 0)
             amount += .05 - remainder;

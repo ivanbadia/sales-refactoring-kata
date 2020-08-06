@@ -3,7 +3,7 @@ package com.supermarket.domain.product;
 import java.util.Objects;
 
 public class ProductName {
-    private String value;
+    private final String value;
 
     public ProductName(String value) {
         this.value = value;

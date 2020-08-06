@@ -2,7 +2,7 @@ package com.supermarket.domain.shared;
 
 public class Money {
     public static final Money ZERO = new Money(0);
-    private double value;
+    private final double value;
 
     public Money(double value) {
         this.value = value;

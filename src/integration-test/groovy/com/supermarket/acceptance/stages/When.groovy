@@ -18,7 +18,7 @@ class When extends Stage<When> {
         redirectConsoleOutputTo(output)
         writeToConsole(saleItems)
         SalesProgram.main()
-        System.setIn(stdin);
+        System.setIn(stdin)
         self()
     }
 

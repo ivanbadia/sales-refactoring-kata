@@ -4,10 +4,10 @@ import com.supermarket.domain.product.ProductName;
 import com.supermarket.domain.shared.Money;
 
 public class SaleItem {
-    private ProductName productName;
-    private Money unitPrice;
-    private boolean isImported;
-    private int quantity;
+    private final ProductName productName;
+    private final Money unitPrice;
+    private final boolean isImported;
+    private final int quantity;
 
     public SaleItem(int quantity, ProductName name, Money unitPrice, boolean isImported) {
         this.quantity = quantity;
