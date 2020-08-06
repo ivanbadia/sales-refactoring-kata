@@ -4,14 +4,14 @@ import com.supermarket.domain.product.ProductName;
 
 public class ReceiptLine
 {
-    private ProductName productName;
-    private int quantity;
-    private double totalAmount;
-    private boolean imported;
+    private final int quantity;
+    private final ProductName productName;
+    private final double totalAmount;
+    private final boolean imported;
 
     public ReceiptLine(int quantity, ProductName productName, double totalAmount, boolean imported) {
-        this.productName = productName;
         this.quantity = quantity;
+        this.productName = productName;
         this.totalAmount = totalAmount;
         this.imported = imported;
     }

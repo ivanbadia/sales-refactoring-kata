@@ -2,7 +2,6 @@ package com.supermarket.infrastructure.persistence;
 
 import com.supermarket.domain.product.Product;
 import com.supermarket.domain.product.ProductName;
-import com.supermarket.domain.product.ProductType;
 import com.supermarket.domain.product.Products;
 
 import java.util.List;
