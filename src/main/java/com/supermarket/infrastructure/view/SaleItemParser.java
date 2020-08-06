@@ -27,13 +27,13 @@ public class SaleItemParser {
                 return Optional.empty();
             }
 
-            int quantity = Integer.parseInt(words[QUANTITY_POSITION]);
-            double price = parseDouble(lastWordOf(words));
-
             boolean isImported = productName.contains("imported ");
             if (isImported) {
-                productName = removeImportedFrom(productName);
+                productName = removeImportedWordFrom(productName);
             }
+
+            int quantity = Integer.parseInt(words[QUANTITY_POSITION]);
+            double price = parseDouble(lastWordOf(words));
 
             return Optional.of(new SaleItem(quantity, new ProductName(productName), new Money(price), isImported));
 
@@ -42,7 +42,7 @@ public class SaleItemParser {
         }
     }
 
-    private String removeImportedFrom(String productName) {
+    private String removeImportedWordFrom(String productName) {
         return productName.replace("imported ", "");
     }
 
@@ -51,8 +51,7 @@ public class SaleItemParser {
         for (int i = 1; i < words.length - 2; i++) {
             productName = String.join(" ", productName, words[i]);
         }
-        productName = productName.trim();
-        return productName;
+        return productName.trim();
     }
 
     private String lastWordOf(String[] words) {
